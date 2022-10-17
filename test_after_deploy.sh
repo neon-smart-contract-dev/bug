@@ -2,7 +2,8 @@
 
 echo now and block.timestamp are calculated correctly!
 echo now: $(seth call $BUG_ADDRESS 'get_now()(uint256)')
-echo block_timestamp: $(seth call $BUG_ADDRESS 'get_block_timestamp()(uint256)')
+echo block.timestamp: $(seth call $BUG_ADDRESS 'get_block_timestamp()(uint256)')
+echo block.number: $(seth call $BUG_ADDRESS 'get_block_number()(uint256)')
 
 # echo Creating new mapping elements always works well!
 # echo
@@ -27,6 +28,18 @@ test_with_repeat() {
     (( count++ ))
   done
 }
+
+method=set_block_number
+test_with_repeat
+
+method=create_new_element_block_number
+test_with_repeat
+method=create_new_element_block_number
+test_with_repeat
+method=create_new_element_block_number
+test_with_repeat
+method=create_new_element_block_number
+test_with_repeat
 
 method=create_new_element_timestamp1
 test_with_repeat

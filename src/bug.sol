@@ -6,6 +6,7 @@ contract Bug {
     mapping (uint256 => uint256) public test_mapping;
     
     uint256 block_timestamp;
+    uint256 block_number;
 
     constructor() public {}
 
@@ -13,8 +14,16 @@ contract Bug {
         return now;
     }
 
+    function get_block_number() external view returns (uint256) {
+        return block.number;
+    }
+    
     function get_block_timestamp() external view returns (uint256) {
         return block.timestamp;
+    }
+    
+    function set_block_number() external {
+        block_number = block.number;
     }
 
     function create_new_element_1() external {
@@ -36,5 +45,9 @@ contract Bug {
 
     function create_new_element_now() external {
         test_mapping[now] = 100;
+    }
+
+    function create_new_element_block_number() external {
+        test_mapping[block.number] = 100;
     }
 }
